@@ -1,0 +1,123 @@
+{
+    "tables": {
+      "Author": {
+        "columns": {
+          "id": "string",
+          "name": "string"
+        }
+      },
+      "Book": {
+        "columns": {
+          "id": "string",
+          "title": "string",
+          "authorIds": "string[]"
+        }
+      },
+      "Profile": {
+        "columns": {
+          "id": "string",
+          "userId": "string",
+          "name": "string",
+          "imageUrl": "string",
+          "email": "string"
+        },
+        "relationships": {
+          "servers": "Server[]",
+          "members": "Member[]",
+          "channels": "Channel[]"
+        }
+      },
+      "Server": {
+        "columns": {
+          "id": "string",
+          "name": "string",
+          "imageUrl": "string",
+          "inviteCode": "string",
+          "profileId": "string"
+        },
+        "relationships": {
+          "profile": "Profile",
+          "members": "Member[]",
+          "channels": "Channel[]"
+        }
+      },
+      "MemberRole": {
+        "enum": ["ADMIN", "MODERATOR", "GUEST"]
+      },
+      "Member": {
+        "columns": {
+          "id": "string",
+          "role": "MemberRole",
+          "profileId": "string",
+          "serverId": "string"
+        },
+        "relationships": {
+          "profile": "Profile",
+          "server": "Server",
+          "messages": "Message[]",
+          "directMessages": "DirectMessage[]",
+          "conversationsInitiated": "Conversation[]",
+          "conversationsReceived": "Conversation[]"
+        }
+      },
+      "ChannelType": {
+        "enum": ["TEXT", "AUDIO", "VIDEO"]
+      },
+      "Channel": {
+        "columns": {
+          "id": "string",
+          "name": "string",
+          "type": "ChannelType",
+          "profileId": "string",
+          "serverId": "string"
+        },
+        "relationships": {
+          "profile": "Profile",
+          "server": "Server",
+          "messages": "Message[]"
+        }
+      },
+      "Message": {
+        "columns": {
+          "id": "string",
+          "content": "string",
+          "fileUrl": "string",
+          "memberId": "string",
+          "channelId": "string",
+          "deleted": "boolean"
+        },
+        "relationships": {
+          "member": "Member",
+          "channel": "Channel"
+        }
+      },
+      "Conversation": {
+        "columns": {
+          "id": "string",
+          "memberOneId": "string",
+          "memberTwoId": "string"
+        },
+        "relationships": {
+          "memberOne": "Member",
+          "memberTwo": "Member",
+          "directMessages": "DirectMessage[]"
+        },
+        "unique": ["memberOneId", "memberTwoId"]
+      },
+      "DirectMessage": {
+        "columns": {
+          "id": "string",
+          "content": "string",
+          "fileUrl": "string",
+          "memberId": "string",
+          "conversationId": "string",
+          "deleted": "boolean"
+        },
+        "relationships": {
+          "member": "Member",
+          "conversation": "Conversation"
+        }
+      }
+    }
+  }
+  
