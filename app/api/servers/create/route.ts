@@ -1,5 +1,6 @@
 import supabase from "@/lib/supabase";
 import { Database } from "@/types/supabase";
+import { type NextRequest } from "next/server";
 
 /*
 Req body data: 
@@ -10,7 +11,7 @@ Object {
         return to client server id with pic.
 */ 
 
-export async function POST(req: Request) { 
+export async function POST(req: NextRequest) { 
     const {name ,imageUrl} = await req.json() ;
     const { data, error } = await supabase
     .from('server_profile')
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
     console.log(data)
      return new Response(JSON.stringify({name, imageUrl}))
 }
-export async function GET() {
+export async function GET(req: NextRequest) {
   const res = "test"
  
   return new Response(JSON.stringify({res: res}))

@@ -43,7 +43,7 @@ const formSchema = z.object({
  *  @input {filetype GIF/JPG} Server Image
  * 
  */
-const initialModal: React.FC<initialModalProps> = () => {
+const initialModal: React.FC<initialModalProps> = (token: any) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
 
@@ -58,7 +58,10 @@ const initialModal: React.FC<initialModalProps> = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       console.log({...values}, "< this is values in initialModel")
-      const res = await axios.post('/api/servers/create', {name: values.name, imageUrl: values.imageUrl});
+      console.log({token}, "< this is values in initialModel")
+
+      const res = await axios.get('/api/servers/create', {headers: {Authorization: `bearer ${token.token as string}`}})
+      // const res = await axios.post('/api/servers/create', {name: values.name, imageUrl: values.imageUrl});  
       // form.reset();
       // router.refresh();
       // window.location.reload();

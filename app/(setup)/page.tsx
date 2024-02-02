@@ -18,10 +18,10 @@ const SetupPage =  () => {
   // console.log(user.id," user is figured from setup page??")
   const [jwtToken, setJwtToken] = React.useState<string | null>(null);
   const [profileData, setProfileData] = React.useState<object>({});
-
+  //should use context api in order to render data from this to UI//
   const { fetchToken } = useClerkToken();
   const { session } = useSession();
-
+  
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +44,7 @@ const SetupPage =  () => {
   
  console.log(profileData, "<<< Profile data || from (setup)>Page.tsx ||")
   return (
-    <InitialModal />
+    <InitialModal token={jwtToken}/>
   )
 }
 
