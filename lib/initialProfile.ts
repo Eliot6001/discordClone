@@ -1,4 +1,5 @@
-import supabaseClient from "./supabase";
+import { db } from "./db";
+import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 
 /**
  * Initiation of a profile,
@@ -9,41 +10,29 @@ import supabaseClient from "./supabase";
  * @returns  user data object!
  */
 
-export const initialProfile = async (user:any , token:any) => {
-  const supabase= supabaseClient;
-  const supabaseAccessToken = token as string;
-  const supabaseInstance = await supabase(supabaseAccessToken as string);
-  console.log("data : ", user, token); 
-  console.log("\n")
-
-  try {
-    const { data, error } = await supabaseInstance.from("user_profile").select("*").eq("user_id", user?.id);
-
-    if (error) {
-      console.error("Error fetching user profile:", error);
-      return null;
-    }
-
-    if (data && data.length > 0) {
-      console.log("User profile found:", data[0]);
-      return data[0];
-    }
-
-    const newProfile = await supabaseInstance
-      .from("user_profile")
-      .insert({
-        user_id: user.id,
-        username: `${user.firstName} ${user.lastName}`,
-        pfp_url: user.imageUrl,
-        'email': user.emailAddresses[0].emailAddress,
-      })
-      .select("*");
-
-    console.log("New profile created:", newProfile.data);
-    //@ts-ignore
-    return newProfile?.data[0];
-  } catch (error) {
-    console.error("Error in initialProfile:", error);
-    return null;
+export const initialProfile = async () => {
+  const user = await currentUser();
+  if (!user) {
+    return redirectToSignIn();
   }
+  const profile = await db.profile.findUnique({
+    where: {
+      userId: user.id
+    }
+  });
+
+  if (profile) {
+    return profile;
+  }
+  const newProfile = await db.profile.create({
+    data: {
+      userId: user.id,
+      name: `${user.firstName} ${user.lastName}`,
+      imageUrl: user.imageUrl,
+      email: user.emailAddresses[0].emailAddress
+    }
+  });
+
+  return newProfile;
 };
+export default initialProfile;

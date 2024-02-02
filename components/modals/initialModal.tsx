@@ -60,11 +60,11 @@ const initialModal: React.FC<initialModalProps> = (token: any) => {
       console.log({...values}, "< this is values in initialModel")
       console.log({token}, "< this is values in initialModel")
 
-      const res = await axios.get('/api/servers/create', {headers: {Authorization: `bearer ${token.token as string}`}})
-      // const res = await axios.post('/api/servers/create', {name: values.name, imageUrl: values.imageUrl});  
-      // form.reset();
-      // router.refresh();
-      // window.location.reload();
+
+      const res = await axios.post('/api/servers/create', {name: values.name, imageUrl: values.imageUrl});  
+      form.reset();
+      router.refresh();
+      window.location.reload();
       console.log(res);
     } catch (error) {
       console.log(error);

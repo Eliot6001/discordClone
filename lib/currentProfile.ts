@@ -1,5 +1,5 @@
 import { auth } from '@clerk/nextjs';
-import { supabase } from '@/lib/supabase'
+import { db } from '@/lib/db'
 
 /**
  * Function to check current signed user
@@ -7,8 +7,17 @@ import { supabase } from '@/lib/supabase'
  */
 export const currentProfile = async () => {
   const { userId } = auth();
-  if(!userId) return null;
-  const profile 
 
+  if (!userId) {
+    return null;
+  }
+
+  const profile = await db.profile.findUnique({
+    where: {
+      userId
+    }
+  });
+
+  return profile;
 
 }
