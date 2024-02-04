@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import initialProfile from '@/lib/initialProfile'
 import InitialModal from '@/components/modals/initialModal'
-import {db} from '@/lib/db';
+import {db} from '@/lib/db'
 /**
  * Setup is meant to handle the case of user not having joined any server yet
 

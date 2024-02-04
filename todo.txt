@@ -1,2 +1,4 @@
 //TODO - Get Prisma in
 Perhaps i might have to redo the client_side first profile part
+I need to create a button from shadcn which takes in imageUrl as an icon and renders it
+build out servers>layout.tsx then make sure it works to build out the layout properly.
