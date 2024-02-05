@@ -4,3 +4,4 @@ I need to create a button from shadcn which takes in imageUrl as an icon and ren
 build out servers>layout.tsx then make sure it works to build out the layout properly.
 Button discord implementation seems correct, however might need more changes
 
+make button that takes in server img and keeps same animation, maybe i should just reuse the discord one? or not
