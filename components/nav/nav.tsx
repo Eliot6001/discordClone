@@ -9,9 +9,9 @@ import ServerButton from "@/components/ui/serverButton";
 translate and height */
 const Nav = () => {
   return (
-    <div className=" w-[4.5rem] flex flex-col align-center items-center dark:bg-[#1e1f22] h-full relative">
+    <div className=" w-[4.5rem] flex flex-col align-center items-center dark:bg-[#1e1f22] h-screen relative">
       <DiscordLogoButton className="pt-3" />
-      <div className="p-0 m-0 py-2 w-full space-y-2 flex flex-col items-center justify-center">
+      <div className="p-0 m-0 py-2 w-full space-y-2 flex flex-col items-center justify-center serverList ">
       <ServerButton imageSrc={"https://utfs.io/f/d635c863-82df-4ce1-b0e3-fda1f535c552-kh0fle.png"} serverName={"TheStong"}/>
       <ServerButton imageSrc={"https://utfs.io/f/d635c863-82df-4ce1-b0e3-fda1f535c552-kh0fle.png"} serverName={"TheStong"}/>
       <ServerButton imageSrc="https://utfs.io/f/af1558f8-031e-42ec-9455-ff18bdb83ef0-d0952e.png" serverName="Server9" />

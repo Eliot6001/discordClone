@@ -29,7 +29,7 @@ const ServerButton= ({imageSrc, serverName, className}:ServerButtonProps) => {
       setServerAlt(serverAlt => serverAlt += word[0])
       )
     
-  }, [serverAlt])
+  }, [])
   return (
     <span className={cn("flex items-center justify-center align-center w-full relative", className)}>
           <span className={cn("absolute left-0 top-0 transform -translate-y-[-200%] block h-[20%] bg-white w-1 rounded-r transition-all duration-150" , active? 'h-[60%] top-1/4 -translate-y-0.5' : hovered ? 'top-0 translate-y-5 h-[15%] ' : 'h-0 ')}/>
