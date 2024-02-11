@@ -3,22 +3,25 @@ import {Button} from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {useState, type MouseEvent, useEffect} from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { useRouter } from "next/navigation";
 interface ServerButtonProps {
   imageSrc: string | undefined,
   serverName: string,
-  className?: string
+  className?: string,
+  serverId?: string
 }
 
-const ServerButton= ({imageSrc, serverName, className}:ServerButtonProps) => {
+const ServerButton= ({imageSrc,serverId, serverName, className}:ServerButtonProps) => {
   const [hovered, setHovered] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [serverAlt, setServerAlt] = useState<string>('');
+  const router = useRouter()
 
 
   const changeHovered = (e: MouseEvent) => {
     e.preventDefault();
     setHovered(!hovered)
+    router.push(`/servers/${serverId}`);
   }
   const setClicked = (e: MouseEvent) => {
     e.preventDefault();

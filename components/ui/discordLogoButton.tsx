@@ -3,10 +3,12 @@ import React, {useState, type MouseEvent} from "react";
 import { Button } from "./button";
 import DiscordIcon from "@/components/discord-icon";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 /*Perfect. */
 const discordLogoButton = ({className}: {className?: string}) => {
   const [hovered, setHovered] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
+  const router = useRouter()
 
   const changeHovered = (e: MouseEvent) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ const discordLogoButton = ({className}: {className?: string}) => {
   }
   const setClicked = (e: MouseEvent) => {
     e.preventDefault();
+    router.push('/');
     setActive(!active);
   }
   return (
