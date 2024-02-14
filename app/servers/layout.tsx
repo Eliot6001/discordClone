@@ -1,12 +1,10 @@
 import React from 'react'
-import {Button} from '@/components/ui/button'
-import Nav from '@/components/nav/nav'
-import { getServers } from '@/lib/getServers'
-const layout = async () => {
-  const servers = await getServers()
+
+const layout = async ({children}) => {
+
   return (
-    <div className="grid grid-cols-6"> 
-      <Nav data={servers}/> 
+    <div className="grid grid-cols-20 "> 
+      {children} {/*This is gonna receive an array of servers or friends */}
     </div>
   )
 }

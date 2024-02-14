@@ -8,22 +8,28 @@ import { currentProfile } from "@/lib/currentProfile";
 /* add selected to discordLogoButton and add useEffect here useclient too. */
 /*the spans responsible for basically the animated line, gotta have bunch of toggle modes where it switched both their 
 translate and height */
+/*
+ * Something for later:::
+ * I need to adjust the currently active button by using data from here in the map check for serverID
+ * then active based on it!
+ *
+ * 
+ *
+ * */
 interface NavProps {
-  data: {
+  data:{
     imageSrc: string;
     name: string;
-  };
-}
-[];
-const Nav = (data: NavProps) => {
+  }}[];
+const Nav = ({data}: NavProps) => {
   console.log("nav data>> ", data)
   return (
     <div className=" w-[4.5rem] flex flex-col align-center items-center dark:bg-[#1e1f22] h-screen relative">
       <DiscordLogoButton className="pt-3" />
       <div className="p-0 m-0 py-2 w-full space-y-2 flex flex-col items-center justify-center serverList ">
         {/* Add more ServerButton components as needed */}
-        {data.data &&
-          data.data?.map((elem : {imageUrl:string, name:string, id: string}) => (
+        {data &&
+          data?.map((elem) => (
             <ServerButton imageSrc={elem.imageUrl} serverName={elem.name} serverId={elem.id}
             key={elem.id}
             />

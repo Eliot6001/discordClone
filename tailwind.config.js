@@ -56,7 +56,10 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
+      gridTemplateColumns:{
+      '20': 'repeat(3,minmax(0,1fr)) minmax(0,1.4fr) repeat(16,minmax(0,1fr))'
+      },
+         keyframes: {
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },

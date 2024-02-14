@@ -7,5 +7,8 @@ Button discord implementation seems correct, however might need more changes
 make button that takes in server img and keeps same animation, maybe i should just reuse the discord one? or not
 need to finish nav.tsx, the hovered&&active state is a nice idea
 need to finish nav.tsx, the hovered&&active state is a nice idea
-time to send out data to layout.tsx && putting nav component properly && inside nav component, it should make a req to servers the user is in and return them serverUrl && serverImg and upload it 
-maybe before that, i can build out the layout for the server and socket texting part
+time to send out data to layout.tsx && putting nav component properly && inside nav component, it should make a req to servers the user is in and return them serverUrl && serverImg and upload iti
+
+
+i need to build the servers list, and use clerk thing with the name in bot and settings page.
+i need to create texting box and messages, inside it
